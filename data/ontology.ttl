@@ -1,0 +1,110 @@
+@prefix : <http://www.dbpedia.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.dbpedia.org/> .
+
+#################################################################
+#    TBOX
+#################################################################
+
+###  http://www.dbpedia.org/Annotation
+:Annotation rdf:type rdfs:Class ;
+            rdfs:subClassOf :WrittenWork .
+
+
+###  http://www.dbpedia.org/Article
+:Article rdf:type rdfs:Class ;
+         rdfs:subClassOf :WrittenWork .
+
+
+###  http://www.dbpedia.org/Artwork
+:Artwork rdf:type rdfs:Class ;
+         rdfs:subClassOf :CreativeWork .
+
+
+###  http://www.dbpedia.org/Book
+:Book rdf:type rdfs:Class ;
+      rdfs:subClassOf :WrittenWork .
+
+
+###  http://www.dbpedia.org/Comic
+:Comic rdf:type rdfs:Class ;
+       rdfs:subClassOf :WrittenWork .
+
+
+###  http://www.dbpedia.org/ComicStrip
+:ComicStrip rdf:type rdfs:Class ;
+            rdfs:subClassOf :Comic .
+
+
+###  http://www.dbpedia.org/CreativeWork
+:CreativeWork rdf:type rdfs:Class .
+
+
+###  http://www.dbpedia.org/Film
+:Film rdf:type rdfs:Class ;
+      rdfs:subClassOf :CreativeWork .
+
+
+###  http://www.dbpedia.org/LightNovel
+:LightNovel rdf:type rdfs:Class ;
+            rdfs:subClassOf :Novel .
+
+
+###  http://www.dbpedia.org/Manga
+:Manga rdf:type rdfs:Class ;
+       rdfs:subClassOf :Comic .
+
+
+###  http://www.dbpedia.org/Manhua
+:Manhua rdf:type rdfs:Class ;
+        rdfs:subClassOf :Comic .
+
+
+###  http://www.dbpedia.org/Novel
+:Novel rdf:type rdfs:Class ;
+       rdfs:subClassOf :Book .
+
+
+###  http://www.dbpedia.org/Painting
+:Painting rdf:type rdfs:Class ;
+          rdfs:subClassOf :Artwork .
+
+
+###  http://www.dbpedia.org/RadioProgram
+:RadioProgram rdf:type rdfs:Class ;
+              rdfs:subClassOf :CreativeWork .
+
+
+###  http://www.dbpedia.org/Reference
+:Reference rdf:type rdfs:Class ;
+           rdfs:subClassOf :Annotation .
+
+
+###  http://www.dbpedia.org/Sculpture
+:Sculpture rdf:type rdfs:Class ;
+           rdfs:subClassOf :Artwork .
+
+
+###  http://www.dbpedia.org/Software
+:Software rdf:type rdfs:Class ;
+          rdfs:subClassOf :CreativeWork .
+
+
+###  http://www.dbpedia.org/VideoGame
+:VideoGame rdf:type rdfs:Class ;
+           rdfs:subClassOf :Software .
+
+
+###  http://www.dbpedia.org/WrittenWork
+:WrittenWork rdf:type rdfs:Class ;
+             rdfs:subClassOf :CreativeWork .
+
+
+############################
+#            ABOX          #
+############################
+:lightNovel1 rdf:type :LightNovel .
