@@ -10,6 +10,29 @@
 #    TBOX
 #################################################################
 
+
+###  http://www.dbpedia.org/CreativeWork
+:CreativeWork rdf:type rdfs:Class .
+
+
+
+###  http://www.dbpedia.org/Film
+:Film rdf:type rdfs:Class ;
+      rdfs:subClassOf :CreativeWork .
+###  http://www.dbpedia.org/Artwork
+:Artwork rdf:type rdfs:Class ;
+         rdfs:subClassOf :CreativeWork .
+
+###  http://www.dbpedia.org/WrittenWork
+:WrittenWork rdf:type rdfs:Class ;
+             rdfs:subClassOf :CreativeWork .
+###  http://www.dbpedia.org/RadioProgram
+:RadioProgram rdf:type rdfs:Class ;
+              rdfs:subClassOf :CreativeWork .
+###  http://www.dbpedia.org/Software
+:Software rdf:type rdfs:Class ;
+          rdfs:subClassOf :CreativeWork .
+
 ###  http://www.dbpedia.org/Annotation
 :Annotation rdf:type rdfs:Class ;
             rdfs:subClassOf :WrittenWork .
@@ -18,9 +41,8 @@
 :Article rdf:type rdfs:Class ;
          rdfs:subClassOf :WrittenWork .
 
-###  http://www.dbpedia.org/Artwork
-:Artwork rdf:type rdfs:Class ;
-         rdfs:subClassOf :CreativeWork .
+
+
 
 ###  http://www.dbpedia.org/Book
 :Book rdf:type rdfs:Class ;
@@ -34,12 +56,7 @@
 :ComicStrip rdf:type rdfs:Class ;
             rdfs:subClassOf :Comic .
 
-###  http://www.dbpedia.org/CreativeWork
-:CreativeWork rdf:type rdfs:Class .
 
-###  http://www.dbpedia.org/Film
-:Film rdf:type rdfs:Class ;
-      rdfs:subClassOf :CreativeWork .
 
 ###  http://www.dbpedia.org/LightNovel
 :LightNovel rdf:type rdfs:Class ;
@@ -65,9 +82,7 @@
           rdfs:subClassOf :Artwork .
 
 
-###  http://www.dbpedia.org/RadioProgram
-:RadioProgram rdf:type rdfs:Class ;
-              rdfs:subClassOf :CreativeWork .
+
 
 
 ###  http://www.dbpedia.org/Reference
@@ -80,9 +95,6 @@
            rdfs:subClassOf :Artwork .
 
 
-###  http://www.dbpedia.org/Software
-:Software rdf:type rdfs:Class ;
-          rdfs:subClassOf :CreativeWork .
 
 
 ###  http://www.dbpedia.org/VideoGame
@@ -90,9 +102,7 @@
            rdfs:subClassOf :Software .
 
 
-###  http://www.dbpedia.org/WrittenWork
-:WrittenWork rdf:type rdfs:Class ;
-             rdfs:subClassOf :CreativeWork .
+
 
 
 ############################

@@ -6,7 +6,6 @@ class QueryEngine:
         self.abox = abox
         self.tbox = tbox
 
-
     def execute_query(self,query):
         g = Graph()
         for t in self.abox:

@@ -1,0 +1,2 @@
+Naive Forward Chaining:     0.00013494491577148438 
+Recursive Forward Chaining: 0.0018260478973388672 
