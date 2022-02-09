@@ -39,34 +39,6 @@ class BackwardReasoner:
         return  visited         #we finally return the list of all visited nodes, and recursion ends
                                 #this return is only reached once, when the if not queue is trigerred and self.graphTraverseBFS is finally not going into a recursive call
 
-
-
-    #this method demonstrates that the headoff given by graphTraverseBFS is due to 
-    def recursiveBFSwithNeihbours (self, queue, visited):
-        print(queue)
-        if not queue: #if queue is empty, we are done poppping
-            return #we return 
-        current_v = queue.pop()
-        neighbours = []
-        #assuming pA is always :subClassOf
-        #vertex: :CreativeWork
-        #e.g. :WrittenWork rdf:subClassOf :CreativeWork .
-        #print("TBOX size", len(self.tboxCopy))
-        for (sT,pT,oT) in self.tboxCopy:
-            if oT == current_v:
-                neighbours.append(sT)
-                self.tboxCopy.remove((sT,pT,oT))
-        for n in neighbours:
-             if (n in visited) == False:
-                 visited.append(n)
-                 print("visited", visited)
-                 queue.append(n)
-
-        self.graphTraverseBFS(queue, visited) #right before recursion stops, this returns and visited will contain all visited nodes                                  
-        return  visited         #we finally return the list of all visited nodes, and recursion ends
-                                #this return is only reached once, when the if not queue is trigerred and self.graphTraverseBFS is finally not going into a recursive call
-
-    
     def neighbours (self,vertex):
         neighbours = []
         toRemove = []
@@ -77,12 +49,36 @@ class BackwardReasoner:
         for (sT,pT,oT) in self.tboxCopy:
             if oT == vertex:
                 neighbours.append(sT)
-                toRemove.append((sT,pT,oT))
-        for (sT,pT,oT) in toRemove:
-            self.tboxCopy.remove((sT,pT,oT))
+                #toRemove.append((sT,pT,oT))
+                self.tboxCopy.remove((sT,pT,oT))
         #print("TBOX size", len(self.tboxCopy))
         #print(self.tboxCopy)
         return neighbours
+
+    # This method demonstrates that when the neighbour() auxiliar method  is incorporated 
+    # in the code, avoiding function call
+    def recursiveBFSwithNeihbours (self, queue, visited):
+        print(queue)
+        if not queue: #if queue is empty, we are done poppping
+            return #we return 
+        current_v = queue.pop()
+        neighbours = []
+        #assuming pA is always :subClassOf
+        #vertex: :CreativeWork
+        #e.g. :WrittenWork rdf:subClassOf :CreativeWork .
+        for (sT,pT,oT) in self.tboxCopy:
+            if oT == current_v:
+                neighbours.append(sT)
+                self.tboxCopy.remove((sT,pT,oT))
+        for n in neighbours:
+             if (n in visited) == False:
+                 visited.append(n)
+                 print("visited", visited)
+                 queue.append(n)
+        self.graphTraverseBFS(queue, visited) #right before recursion stops, this returns and visited will contain all visited nodes                                  
+        return  visited         #we finally return the list of all visited nodes, and recursion ends
+                                #this return is only reached once, when the if not queue is trigerred and self.graphTraverseBFS is finally not going into a recursive call
+
     # End Recursive Approaches --------------------------------
 
 
@@ -118,29 +114,30 @@ class BackwardReasoner:
 
         f = open("results.txt", "w")
 
-        self.tboxCopy = copy.copy(self.tBox) #we will work on a copy of the tbox
-        start_time = time.time()
-        self.queryObjects = self.getQueryObjects()
-        f.write("Naive Backward: %s \n"  % (time.time() - start_time))
+        #self.tboxCopy = copy.copy(self.tBox) #we will work on a copy of the tbox
 
-        # Recursive approach DFS
-        #self.tboxCopy = copy.copy(self.tBox) #reset the tbox copy
         #start_time = time.time()
-        #self.queryObjects = self.graphTraverseDFS(URIRef("http://www.dbpedia.org/CreativeWork"), [], [])
+        #self.queryObjects = self.getQueryObjects()
+        #runtime = time.time() - start_time
+        #f.write("Naive Backward: %.9f \n"  % (runtime))
 
         # Recursive approach DFS
         self.tboxCopy = copy.copy(self.tBox) #reset the tbox copy
-        # Recursive approach BFS
-        q = []
-        q.append(URIRef("http://www.dbpedia.org/CreativeWork"))
         start_time = time.time()
-        self.queryObjects = self.graphTraverseBFS(q, [])
-        f.write("Recursive BFS Backward: %s \n"  % (time.time() - start_time))
-
-
-        #self.queryObjects = self.graphTraverseDFS(URIRef("http://www.dbpedia.org/CreativeWork"), self.neighbours(URIRef("http://www.dbpedia.org/CreativeWork")), [URIRef("http://www.dbpedia.org/CreativeWork")])
+        self.queryObjects = self.graphTraverseDFS(URIRef("http://www.dbpedia.org/CreativeWork"), [], [])
         f.write("Recursive DFS Backward: %s \n"  % (time.time() - start_time))
-        print("objects", self.queryObjects)
+
+        # Recursive approach DFS
+        #self.tboxCopy = copy.copy(self.tBox) #reset the tbox copy
+        # Recursive approach BFS
+        #q = []
+        #q.append(URIRef("http://www.dbpedia.org/CreativeWork"))
+        #start_time = time.time()
+        #self.queryObjects = self.graphTraverseBFS(q, [])
+        #f.write("Recursive BFS Backward: %s \n"  % (time.time() - start_time))
+
+
+        #print("objects", self.queryObjects)
         #query = self.build_and_execute_Query()
         f.close()
         return []
