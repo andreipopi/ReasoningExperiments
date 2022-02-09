@@ -15,7 +15,6 @@ class BackwardReasoner:
         toVisit = self.neighbours(vertex)
         #print("vertex",vertex)
         print("ToVisit: ", toVisit, "\n")
-        
         if toVisit == []:
             return visited
         for v in toVisit:
